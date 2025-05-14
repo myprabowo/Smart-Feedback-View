@@ -125,7 +125,7 @@ ui <- dashboardPage(
 server <- function(input, output, session) { # Tidak ada argumen tambahan
   
   # Path relatif ke file service account (pastikan sudah dipindahkan dari WWW!)
-  service_account_path <- "secrets/gentle-edition-458710-g7-ecafe7761a39.json"
+  service_account_path <- "secrets/gentle-edition-458710-g7-ecafe7761a39.json" # Ganti dengan file JSON untuk akses dari Google Cloud Console
   
   # Pastikan file ada
   if (!file.exists(service_account_path)) {
@@ -149,8 +149,8 @@ server <- function(input, output, session) { # Tidak ada argumen tambahan
   data <- reactive({
     tryCatch({
       sheet_url <- ifelse(input$tahun == "2024",
-                          "https://docs.google.com/spreadsheets/d/11EvoDiXft7_Bfnu6vxA9eVYQYdd8KJNBx-GmIJEHwdk/edit?usp=sharing",
-                          "https://docs.google.com/spreadsheets/d/1hSwQldPgxc7wIcjF_f89uGGENnNuoveeiYgqEbt251M/edit?usp=sharing")
+                          "https://url-share-google-sheet-2024", # Ganti dengan url Google Sheets untuk data kuesioner 2024
+                          "https://url-share-google-sheet-2025") # Ganti dengan url Google Sheets untuk data kuesioner 2025
       read_sheet(sheet_url)
     }, error = function(e) {
       showNotification(paste("Gagal membaca data dari Google Sheet:", e$message), type = "error", duration = NULL)
